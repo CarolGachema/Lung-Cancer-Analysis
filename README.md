@@ -22,11 +22,10 @@ Place the downloaded file in a folder called `data/` before running the scripts.
 - Top 10 genes identified (in results folder)
 
 ## Key Findings
-# Top 10 Differentially Expressed Genes in Lung Cancer
 
-The top 10 significantly differentially expressed genes are summarized in **Table 1** (see `Figures/` folder). Below are brief descriptions with links to [NCBI Gene](https://www.ncbi.nlm.nih.gov/gene/) pages for each gene.
+The top 10 significantly differentially expressed genes are summarized in figures folder and results folders. Below are brief descriptions with links to [NCBI Gene](https://www.ncbi.nlm.nih.gov/gene/) pages for each gene.
 
-## Top Differentially Expressed Genes in Lung Cancer
+### Top Differentially Expressed Genes in Lung Cancer
 
 The following genes ranked highest based on differential expression analysis.  
 Some genes appeared multiple times due to multiple probes mapping to the same gene, indicating consistent expression changes.
