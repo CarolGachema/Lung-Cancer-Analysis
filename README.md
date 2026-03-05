@@ -26,20 +26,20 @@ Place the downloaded file in a folder called `data/` before running the scripts.
 
 The top 10 significantly differentially expressed genes are summarized in **Table 1** (see `Figures/` folder). Below are brief descriptions with links to [NCBI Gene](https://www.ncbi.nlm.nih.gov/gene/) pages for each gene.
 
-| Gene (Probe ID) | Expression | Function / Relevance | NCBI Link |
-|-----------------|------------|--------------------|-----------|
-| **TNXA (ILMN_2209417)** | Upregulated | Involved in extracellular matrix organization and cell adhesion; may facilitate tumor invasion and metastasis. | [TNXA](https://www.ncbi.nlm.nih.gov/gene/?term=TNXA) |
-| **ABCD1 (ILMN_3306019)** | Downregulated | Plays a role in lipid metabolism and oxidative stress response, influencing cancer cell proliferation and survival. | [ABCD1](https://www.ncbi.nlm.nih.gov/gene/?term=ABCD1) |
-| **MMP9 (ILMN_1234567)** | Upregulated | Matrix metalloproteinase contributing to tissue remodeling and tumor progression. | [MMP9](https://www.ncbi.nlm.nih.gov/gene/?term=MMP9) |
-| **EGFR (ILMN_2345678)** | Upregulated | Growth factor receptor implicated in lung cancer development; a common therapeutic target. | [EGFR](https://www.ncbi.nlm.nih.gov/gene/?term=EGFR) |
-| **CDK1 (ILMN_3456789)** | Upregulated | Regulates cell cycle progression; promotes uncontrolled proliferation. | [CDK1](https://www.ncbi.nlm.nih.gov/gene/?term=CDK1) |
-| **BCL2 (ILMN_4567890)** | Downregulated | Anti-apoptotic gene; decreased expression affects programmed cell death and cancer cell survival. | [BCL2](https://www.ncbi.nlm.nih.gov/gene/?term=BCL2) |
-| **KRAS (ILMN_5678901)** | Upregulated | Oncogene involved in cell signaling and proliferation; commonly mutated in lung tumors. | [KRAS](https://www.ncbi.nlm.nih.gov/gene/?term=KRAS) |
-| **VEGFA (ILMN_6789012)** | Upregulated | Promotes angiogenesis to support tumor growth. | [VEGFA](https://www.ncbi.nlm.nih.gov/gene/?term=VEGFA) |
-| **TP53 (ILMN_7890123)** | Downregulated | Tumor suppressor gene; loss of function leads to genomic instability and cancer progression. | [TP53](https://www.ncbi.nlm.nih.gov/gene/?term=TP53) |
-| **SOX2 (ILMN_8901234)** | Upregulated | Transcription factor associated with stemness and tumor aggressiveness. | [SOX2](https://www.ncbi.nlm.nih.gov/gene/?term=SOX2) |
+## Top Differentially Expressed Genes in Lung Cancer
 
-*Expression levels across samples are visualized in **Figure 2** (`Figures/`).*
+The following genes ranked highest based on differential expression analysis.  
+Some genes appeared multiple times due to multiple probes mapping to the same gene, indicating consistent expression changes.
+
+| Gene Symbol | Expression* | Function / Relevance | NCBI Gene Link |
+|-------------|------------|----------------------|----------------|
+| **TNXB** | Differentially expressed | Encodes Tenascin-X, an extracellular matrix glycoprotein involved in matrix organization and cell adhesion. Alterations may influence tumor invasion and tissue remodeling. | https://www.ncbi.nlm.nih.gov/gene/?term=TNXB |
+| **TNXA** | Differentially expressed (multiple probes) | Pseudogene related to Tenascin family members. While not protein-coding, its expression may reflect genomic or regulatory alterations in tumor tissue. | https://www.ncbi.nlm.nih.gov/gene/?term=TNXA |
+| **AGER** | Differentially expressed (multiple probes) | Encodes the receptor for advanced glycation end products (RAGE). Highly expressed in lung tissue and involved in inflammation and immune signaling; dysregulation is linked to lung cancer progression. | https://www.ncbi.nlm.nih.gov/gene/?term=AGER |
+| **ADH1B** | Differentially expressed | Alcohol dehydrogenase involved in ethanol metabolism and oxidative stress pathways. Altered metabolic gene expression is commonly observed in tumor cells. | https://www.ncbi.nlm.nih.gov/gene/?term=ADH1B |
+| **ADAMTS8** | Differentially expressed (multiple probes) | Member of the ADAMTS metalloproteinase family. Often reported as a tumor suppressor gene and implicated in extracellular matrix remodeling in cancers. | https://www.ncbi.nlm.nih.gov/gene/?term=ADAMTS8 |
+| **VEPH1** | Differentially expressed | Encodes Ventricular Zone Expressed PH Domain Containing 1. Suggested roles in cell signaling and development; emerging evidence links it to tumor regulatory pathways. | https://www.ncbi.nlm.nih.gov/gene/?term=VEPH1 |
+| **LRRC36** | Differentially expressed | Leucine-rich repeat-containing protein; limited characterization, but leucine-rich repeat proteins are often involved in protein–protein interactions and signaling pathways. | https://www.ncbi.nlm.nih.gov/gene/?term=LRRC36 |
 
 ## Reproducibility
 All scripts used are included in the `scripts/` folder.
