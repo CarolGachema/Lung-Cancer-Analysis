@@ -135,7 +135,7 @@ text(
 
 #Heatmap
 top10_genes <- rownames(sig_genes[order(sig_genes$adj.P.Val), ][1:10, ])
-heatmap_data <- expression_data[top20_genes, ]
+heatmap_data <- expression_data[top10_genes, ]
 heatmap(
   heatmap_data,
   scale = "row",
@@ -155,6 +155,7 @@ png("figures/volcano_plot.png", width = 800, height = 600)
 dev.off()
 
 load("results/lung_cancer_workspace.RData")
+
 
 
 
