@@ -1,1 +1,4 @@
+GEO accession: GSE19188
+Downloaded from NCBI GEO. The raw GSE expression data is too large to upload here. You can download it directly from NCBI GEO:
 
+Place the downloaded file in a folder called data/ before running the scripts
