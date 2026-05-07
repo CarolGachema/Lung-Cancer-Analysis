@@ -1,48 +1,137 @@
 # Lung Cancer Differential Gene Expression Analysis
 
+
 ## Overview
-This project analyzes gene expression data to identify differentially expressed genes in lung cancer samples compared to normal tissue.
+
+This project performs a comprehensive **differential gene expression (DEG) analysis** on publicly available lung cancer microarray data, comparing gene expression profiles between **tumour tissue** and **healthy lung tissue**. The goal is to identify genes that are significantly upregulated or downregulated in lung cancer, providing molecular insights into tumourigenesis and potential therapeutic targets.
+
+Lung cancer remains the leading cause of cancer-related mortality worldwide, accounting for approximately 1.8 million deaths annually. Understanding the transcriptomic landscape of lung tumours is critical for developing targeted diagnostics and therapies.
+
 
 ## Dataset
-GEO accession: GSE19188  
-Downloaded from NCBI GEO.
-The raw GSE expression data is **too large to upload** here. You can download it directly from NCBI GEO:
 
-[GSE19188](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE19188)
-Place the downloaded file in a folder called `data/` before running the scripts.
+| Parameter | Details |
+|-----------|---------|
+| **GEO Accession** | [GSE19188](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE19188) |
+| **Platform** | Affymetrix Human Genome U133 Plus 2.0 Array (GPL570) |
+| **Comparison** | Tumour vs Healthy lung tissue |
+| **Source** | NCBI Gene Expression Omnibus (GEO) |
+
 
 ## Methods
-- Data preprocessing in R
-- Differential expression analysis using limma
-- Threshold: |log2FC| > 1
-- Adjusted p-value (FDR < 0.05)
 
-## Results
-- Total significant genes
-- Top 10 genes identified (in results folder)
+```
+Raw GEO Data → Expression Matrix Extraction → Group Classification
+→ Design Matrix → Contrast Definition → limma Linear Model
+→ Empirical Bayes Statistics → FDR Correction → DEG Filtering
+→ Gene Annotation → Visualisation → Results Export
+```
 
-## Key Findings
+### Statistical Framework
+- **Package:** `limma` (Linear Models for Microarray Analysis)
+- **Moderation:** Empirical Bayes (eBayes)
+- **Multiple Testing Correction:** Benjamini-Hochberg FDR
+- **Significance Thresholds:** adj.P.Val < 0.05 AND |log2FC| > 1
 
-The top 10 significantly differentially expressed genes are summarized in figures folder and results folders. Below are brief descriptions with links to [NCBI Gene](https://www.ncbi.nlm.nih.gov/gene/) pages for each gene.
+## Key Results
 
-### Top Differentially Expressed Genes in Lung Cancer
+| Metric | Value |
+|--------|-------|
+| **Total Significant DEGs** | 3,672 |
+| **Upregulated in Tumour** | 1,129 |
+| **Downregulated in Tumour** | 2,543 |
 
-The following genes ranked highest based on differential expression analysis.  
-Some genes appeared multiple times due to multiple probes mapping to the same gene, indicating consistent expression changes.
+### Top Differentially Expressed Genes
 
-| Gene Symbol | Expression* | Function / Relevance | NCBI Gene Link |
-|-------------|------------|----------------------|----------------|
-| **TNXB** | Differentially expressed | Encodes Tenascin-X, an extracellular matrix glycoprotein involved in matrix organization and cell adhesion. Alterations may influence tumor invasion and tissue remodeling. | https://www.ncbi.nlm.nih.gov/gene/?term=TNXB |
-| **TNXA** | Differentially expressed (multiple probes) | Pseudogene related to Tenascin family members. While not protein-coding, its expression may reflect genomic or regulatory alterations in tumor tissue. | https://www.ncbi.nlm.nih.gov/gene/?term=TNXA |
-| **AGER** | Differentially expressed (multiple probes) | Encodes the receptor for advanced glycation end products (RAGE). Highly expressed in lung tissue and involved in inflammation and immune signaling; dysregulation is linked to lung cancer progression. | https://www.ncbi.nlm.nih.gov/gene/?term=AGER |
-| **ADH1B** | Differentially expressed | Alcohol dehydrogenase involved in ethanol metabolism and oxidative stress pathways. Altered metabolic gene expression is commonly observed in tumor cells. | https://www.ncbi.nlm.nih.gov/gene/?term=ADH1B |
-| **ADAMTS8** | Differentially expressed (multiple probes) | Member of the ADAMTS metalloproteinase family. Often reported as a tumor suppressor gene and implicated in extracellular matrix remodeling in cancers. | https://www.ncbi.nlm.nih.gov/gene/?term=ADAMTS8 |
-| **VEPH1** | Differentially expressed | Encodes Ventricular Zone Expressed PH Domain Containing 1. Suggested roles in cell signaling and development; emerging evidence links it to tumor regulatory pathways. | https://www.ncbi.nlm.nih.gov/gene/?term=VEPH1 |
-| **LRRC36** | Differentially expressed | Leucine-rich repeat-containing protein; limited characterization, but leucine-rich repeat proteins are often involved in protein–protein interactions and signaling pathways. | https://www.ncbi.nlm.nih.gov/gene/?term=LRRC36 |
+| Gene | Expression | Biological Relevance |
+|------|-----------|---------------------|
+| **TNXB** | Differentially expressed | Extracellular matrix glycoprotein; influences tumour invasion and tissue remodelling |
+| **AGER** | Differentially expressed | Receptor for advanced glycation end products (RAGE); linked to lung cancer progression and inflammation |
+| **ADAMTS8** | Differentially expressed | Putative tumour suppressor; implicated in ECM remodelling in cancer |
+| **ADH1B** | Differentially expressed | Alcohol dehydrogenase; reflects altered metabolic landscape of tumour cells |
+| **VEPH1** | Differentially expressed | Emerging evidence links it to tumour regulatory pathways |
+| **LRRC36** | Differentially expressed | Leucine-rich repeat protein involved in protein-protein interactions and signalling |
 
-## Reproducibility
-All scripts used are included in the `scripts/` folder.
+> Multiple probes mapping to the same gene (e.g., AGER, ADAMTS8) indicate consistent and robust expression changes across independent probe sets — strengthening confidence in these findings.
 
 
+## Visualisations
 
+### Volcano Plot
+The volcano plot below visualises effect size (log2 fold change) against statistical significance (−log10 adjusted p-value). Genes in the upper corners represent the most biologically and statistically significant DEGs. The top 10 genes are annotated directly on the plot.
+
+ `figures/volcano_plot.png`
+
+### Heatmap
+A heatmap of the top 10 most significant DEGs across all samples, with row scaling applied to normalise expression. Tumour samples are labelled in red, healthy samples in blue.
+
+ `figures/heatmap_top10_genes.png`
+
+
+## Repository Structure
+
+```
+Lung-Cancer-DEG-Analysis/
+│
+├── data/
+│   └── GSE19188_series_matrix.txt.gz    # Raw GEO series matrix (download from NCBI)
+│
+├── scripts/
+│   └── lung_cancer_analysis.R           # Full annotated R analysis pipeline
+│
+├── results/
+│   ├── all_genes_results.csv            # All genes with full statistics
+│   ├── significant_genes.csv            # Filtered significant DEGs
+│   ├── upregulated_genes.csv            # Genes upregulated in tumour tissue
+│   └── downregulated_genes.csv          # Genes downregulated in tumour tissue
+│
+└── figures/
+    ├── volcano_plot.png                 # Volcano plot with top 10 annotated genes
+    └── heatmap_top10_genes.png          # Heatmap of top 10 DEGs
+```
+
+
+## How to Reproduce This Analysis
+
+### Prerequisites
+Install the following R packages before running the analysis:
+
+```r
+install.packages("BiocManager")
+BiocManager::install(c("GEOquery", "limma", "hgu133plus2.db", "AnnotationDbi"))
+```
+
+### Steps
+1. Clone this repository
+2. Download the GSE19188 dataset from [NCBI GEO](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE19188) and place it in the `data/` folder
+3. Open `scripts/lung_cancer_analysis.R` in RStudio
+4. Run the script end to end
+5. Results will be saved to `results/` and `figures/`
+
+---
+
+## Biological Interpretation
+
+The predominance of **downregulated genes** (2,543 vs 1,129 upregulated) is consistent with the widespread transcriptional silencing and tumour suppressor loss documented in lung cancer biology. Key findings include:
+
+- **AGER downregulation** reflects disruption of normal pulmonary homeostasis and innate immune signalling in tumour tissue
+- **ADAMTS8 downregulation** supports its role as a tumour suppressor restraining ECM remodelling in healthy lung tissue
+- **ADH1B dysregulation** reflects the altered metabolic reprogramming characteristic of tumour cells (Warburg effect)
+- Multiple probe sets mapping to the same genes strengthen confidence in these findings as genuine biological signals
+
+
+## Limitations
+
+- Exploratory analysis — findings require functional validation
+- No clinical metadata stratification (e.g., cancer subtype, stage, treatment history)
+- Microarray technology offers less precise quantification than RNA-sequencing
+- Future analyses should incorporate pathway enrichment (GO, KEGG) for deeper mechanistic insight
+
+
+## Author
+
+**Caroline Gachema**
+
+
+*Data sourced from NCBI GEO — publicly available for research use.*
 
