@@ -13,7 +13,7 @@ library(limma)     # For differential expression analysis using linear models
 
 
 # Set and Verify Working Directory
-setwd("C:/Users/Salome/Documents/MY PROJECTS/Lung Cancer Analysis")
+setwd("C:/Users/Caroline/Documents/MY PROJECTS/Lung Cancer Analysis")
 
 
 # Load GEO Dataset.
